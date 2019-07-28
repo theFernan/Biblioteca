@@ -38,7 +38,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        txtCodigoNumeros = new javax.swing.JTextField();
         txtAutor = new javax.swing.JTextField();
         txtTitulo = new javax.swing.JTextField();
         txtCopias = new javax.swing.JTextField();
@@ -46,7 +46,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
         txtEditorial = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCodigoLetras = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,9 +62,15 @@ public class RegistrarLibro extends javax.swing.JFrame {
 
         jLabel6.setText("Editorial");
 
-        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodigoNumeros.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCodigoKeyTyped(evt);
+                txtCodigoNumerosKeyTyped(evt);
+            }
+        });
+
+        txtCopias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCopiasKeyTyped(evt);
             }
         });
 
@@ -78,9 +84,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         jLabel7.setText("-");
 
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtCodigoLetras.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
+                txtCodigoLetrasKeyTyped(evt);
             }
         });
 
@@ -94,11 +100,11 @@ public class RegistrarLibro extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(85, 85, 85)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigoNumeros, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCodigoLetras, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(94, 94, 94)
@@ -132,9 +138,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCodigoNumeros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoLetras, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -176,22 +182,29 @@ public class RegistrarLibro extends javax.swing.JFrame {
        guardar();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+    private void txtCodigoNumerosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoNumerosKeyTyped
         char c=evt.getKeyChar();
         
         if(c<'0' || c>'9') evt.consume();
         
-    }//GEN-LAST:event_txtCodigoKeyTyped
+    }//GEN-LAST:event_txtCodigoNumerosKeyTyped
 
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+    private void txtCodigoLetrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoLetrasKeyTyped
         char c=evt.getKeyChar();
         
-        if((c<'a' || c>'z') && (c<'A' || c>'Z')) evt.consume();
+        if(c<'A' || c>'Z') evt.consume();
         
-    }//GEN-LAST:event_jTextField1KeyTyped
+    }//GEN-LAST:event_txtCodigoLetrasKeyTyped
+
+    private void txtCopiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCopiasKeyTyped
+        char c=evt.getKeyChar();
+        
+        if(c<'0' || c>'9') evt.consume();
+    }//GEN-LAST:event_txtCopiasKeyTyped
 
     private void guardar(){
-       String codigo=txtCodigo.getText();
+       String codigoN=txtCodigoNumeros.getText();
+       String codigoL=txtCodigoLetras.getText();
        String autor=txtAutor.getText();
        String titulo=txtTitulo.getText();
        String copias=txtCopias.getText();
@@ -200,7 +213,8 @@ public class RegistrarLibro extends javax.swing.JFrame {
        
         try {
             ObjectOutputStream guar = new ObjectOutputStream(new FileOutputStream(codigo));
-            guar.writeObject(codigo);
+            guar.writeObject(codigoN);
+            guar.writeObject(codigoL);
             guar.writeObject(autor);
             guar.writeObject(titulo);
             guar.writeObject(copias);
@@ -220,9 +234,9 @@ public class RegistrarLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField txtAutor;
-    private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoLetras;
+    private javax.swing.JTextField txtCodigoNumeros;
     private javax.swing.JTextField txtCopias;
     private javax.swing.JTextField txtEditorial;
     private javax.swing.JTextField txtFecha;
