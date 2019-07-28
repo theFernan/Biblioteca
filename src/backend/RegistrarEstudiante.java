@@ -20,6 +20,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
      */
     public RegistrarEstudiante() {
         initComponents();
+        items();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -57,8 +58,6 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
                 txtCarnetKeyTyped(evt);
             }
         });
-
-        cbCarrera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,6 +111,7 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         guardar();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtCarnetKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCarnetKeyTyped
@@ -133,6 +133,15 @@ private void guardar(){
         } catch (IOException e) {
         }
     }
+
+private void items() {
+        cbCarrera.addItem("Ingeniería: 1");
+        cbCarrera.addItem("Medicina: 2");
+        cbCarrera.addItem("Derecho: 3");
+        cbCarrera.addItem("Arquitectura: 4");
+        cbCarrera.addItem("Administracion: 5");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbCarrera;
     private javax.swing.JButton jButton1;
@@ -144,4 +153,6 @@ private void guardar(){
     private javax.swing.JTextField txtNacimiento;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
+    
 }

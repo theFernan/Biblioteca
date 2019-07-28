@@ -178,21 +178,21 @@ public class RegistrarLibro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
        guardar();
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtCodigoNumerosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoNumerosKeyTyped
         char c=evt.getKeyChar();
         
-        if(c<'0' || c>'9') evt.consume();
+        if((c<'0' || c>'9') || (txtCodigoNumeros.getText().length()>2)) evt.consume();
         
     }//GEN-LAST:event_txtCodigoNumerosKeyTyped
 
     private void txtCodigoLetrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoLetrasKeyTyped
         char c=evt.getKeyChar();
         
-        if(c<'A' || c>'Z') evt.consume();
+        if((c<'A' || c>'Z') || (txtCodigoLetras.getText().length()>2)) evt.consume();
         
     }//GEN-LAST:event_txtCodigoLetrasKeyTyped
 
@@ -212,7 +212,7 @@ public class RegistrarLibro extends javax.swing.JFrame {
        String editorial=txtEditorial.getText();
        
         try {
-            ObjectOutputStream guar = new ObjectOutputStream(new FileOutputStream(codigo));
+            ObjectOutputStream guar = new ObjectOutputStream(new FileOutputStream(codigoN+"-"+codigoL));
             guar.writeObject(codigoN);
             guar.writeObject(codigoL);
             guar.writeObject(autor);
