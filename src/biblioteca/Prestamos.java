@@ -1,6 +1,9 @@
 package biblioteca;
 
-public class Prestamos {
+import java.io.Serializable;
+
+public class Prestamos implements Serializable{
+    
     private String codigoLibro;
     private String nombre;
     private String carrera;

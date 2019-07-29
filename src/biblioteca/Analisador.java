@@ -55,7 +55,7 @@ public class Analisador extends Thread{
                             if(cantidad[0].equals("CANTIDAD")){
                                 j=pasarLinea(j);
                                 Libro libro = new Libro(titulo[1], autor[1], codigo[1], cantidad[1]);
-                                File file = new File("src/registros/"+i+".bin");
+                                File file = new File("src/registros/libros/"+codigo[1]+".bin");
                                 guardarArchivos(file, libro);
                                 pp.setError("Registro Libro Almacenado");
                             }else{
@@ -71,6 +71,59 @@ public class Analisador extends Thread{
                     pp.setError("Registro Libro: Error en formato");
                 }
             break;
+            case "ESTUDIANTE":
+                String error="Registro Estudiante: Error en formato";
+                j=pasarLinea(j);
+                String carnet[]=lineas[j].split(":");
+                if(carnet[0].equals("CARNET")){
+                    j=pasarLinea(j);
+                    String nombre []=lineas[j].split(":");
+                    if(nombre[0].equals("NOMBRE")){
+                        j=pasarLinea(j);
+                        String carrera[]=lineas[j].split(":");
+                        if(carrera[0].equals("CARRERA")){
+                            j=pasarLinea(j);
+                            Estudiante estudiante = new Estudiante(carnet[1], nombre[1], carrera[1]);
+                            File file = new File("src/registros/estudiantes/"+carnet[1]+".bin");
+                            guardarArchivos(file, estudiante);
+                            pp.setError("Registro Estudiante: Almacenado");
+                        }else{
+                            pp.setError(error);
+                        }
+                    }else{
+                        pp.setError(error);
+                    }
+                }else{
+                    pp.setError(error);
+                }
+                break;
+            case "PRESTAMO":
+                String errorPrestamo="Registro Prestamo: Error en formato";
+                j=pasarLinea(j);
+                String codigo[]=lineas[j].split(":");
+                if(codigo[0].equals("CODIGOLIBRO")){
+                    j=pasarLinea(j);
+                    String carne []=lineas[j].split(":");
+                    if(carne[0].equals("CARNET")){
+                        j=pasarLinea(j);
+                        String fecha[]=lineas[j].split(":");
+                        if(fecha[0].equals("FECHA")){
+                            j=pasarLinea(j);
+                            Prestamos prestamos = new Prestamos(codigo[1], carne[1], fecha[1]);
+                            File file = new File("src/registros/prestamos/"+codigo[1]+"_"+carne[1]+".bin");
+                            guardarArchivos(file, prestamos);
+                            pp.setError("Registro Prestamo: Almacenado");
+                        }else{
+                            pp.setError(errorPrestamo);
+                        }
+                    }else{
+                        pp.setError(errorPrestamo);
+                    }
+                }else{
+                    pp.setError(errorPrestamo);
+                }
+                break;
+                
             case "":
                 break;
                 
