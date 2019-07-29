@@ -38,6 +38,7 @@ public class Analisador extends Thread{
     
     private int analisis(String linea, int i, String [] lineas) throws IOException{
         int j=i;
+        PaginaPrincipal pp = new PaginaPrincipal();
         switch(linea){
             case "LIBRO":
                 j=pasarLinea(j);
@@ -56,10 +57,18 @@ public class Analisador extends Thread{
                                 Libro libro = new Libro(titulo[1], autor[1], codigo[1], cantidad[1]);
                                 File file = new File("src/registros/"+i+".bin");
                                 guardarArchivos(file, libro);
-                                System.out.println("si se pudo puto");
+                                pp.setError("Registro Libro Almacenado");
+                            }else{
+                                pp.setError("Registro Libro: Error en formato");
                             }
+                        }else{
+                            pp.setError("Registro Libro: Error en formato");
                         }
+                    }else{
+                        pp.setError("Registro Libro: Error en formato");
                     }
+                }else{
+                    pp.setError("Registro Libro: Error en formato");
                 }
             break;
             case "":
