@@ -1,7 +1,9 @@
 
 package biblioteca;
 
-public class Estudiante {
+import java.io.Serializable;
+
+public class Estudiante implements Serializable{
     private String carnet;
     private String nombre;
     private String carrera;
