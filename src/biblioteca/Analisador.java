@@ -115,7 +115,7 @@ public class Analisador extends Thread{
                         String fecha[]=lineas[j].split(":");
                         if(fecha[0].equals("FECHA")){
                             j=pasarLinea(j);
-                            Prestamos prestamos = new Prestamos(codigo[1], carne[1], fecha[1]);
+                            Prestamos prestamos = new Prestamos(codigo[1], carne[1], fecha[1], "Inactivo");
                             File file = new File("src/registros/prestamos/"+codigo[1]+"_"+carne[1]+"_"+fecha[1]+".bin");
                             if(file.exists()){
                                 pp.setError("Registro Prestamo: Error No se puede prestar el \n mismo libro a "
