@@ -53,6 +53,9 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
 
         txtCarrera.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCarreraKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCarreraKeyTyped(evt);
             }
@@ -165,7 +168,11 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(txtCarnet.getText().equals("") || txtNombre.getText().equals("") || txtCarrera.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Rellene campos obligatorios", "ERROR", JOptionPane.WARNING_MESSAGE);
-        }else{
+        }
+        else if(Integer.parseInt(txtCarrera.getText()) < 0 || Integer.parseInt(txtCarrera.getText()) > 5) {
+            JOptionPane.showMessageDialog(null, "Codigo de carrera inválido", "ERROR", JOptionPane.WARNING_MESSAGE);
+        }
+        else{
             guardar();
             this.setVisible(false);
         }
@@ -181,13 +188,17 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         txtNacimiento.setText("");
     }//GEN-LAST:event_txtNacimientoMouseClicked
 
+    private void txtCarreraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCarreraKeyPressed
+        txtCarrera.setText("");
+    }//GEN-LAST:event_txtCarreraKeyPressed
+
 private void guardar(){
        String carnet=txtCarnet.getText();
        String nombre=txtNombre.getText();
        String nacimiento=txtNacimiento.getText();
        
         try {
-            ObjectOutputStream guar = new ObjectOutputStream(new FileOutputStream("Estudiantes/"+carnet));
+            ObjectOutputStream guar = new ObjectOutputStream(new FileOutputStream("src/registros/estudiantes/"+carnet+".bin"));
             guar.writeObject(carnet);
             guar.writeObject(nombre);
             guar.writeObject(nacimiento);           
