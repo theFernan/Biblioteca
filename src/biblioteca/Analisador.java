@@ -70,6 +70,7 @@ public class Analisador extends Thread{
                 }else{
                     pp.setError("Registro Libro: Error en formato");
                 }
+                pp.setError("***************************************");
             break;
             case "ESTUDIANTE":
                 String error="Registro Estudiante: Error en formato";
@@ -85,8 +86,12 @@ public class Analisador extends Thread{
                             j=pasarLinea(j);
                             Estudiante estudiante = new Estudiante(carnet[1], nombre[1], carrera[1]);
                             File file = new File("src/registros/estudiantes/"+carnet[1]+".bin");
-                            guardarArchivos(file, estudiante);
-                            pp.setError("Registro Estudiante: Almacenado");
+                            if(file.exists()){
+                                pp.setError("Error: Estudiante Ya Almacenado");
+                            }else{
+                                guardarArchivos(file, estudiante);
+                                pp.setError("Registro Estudiante: Almacenado");
+                            }
                         }else{
                             pp.setError(error);
                         }
@@ -96,6 +101,7 @@ public class Analisador extends Thread{
                 }else{
                     pp.setError(error);
                 }
+                pp.setError("***************************************");
                 break;
             case "PRESTAMO":
                 String errorPrestamo="Registro Prestamo: Error en formato";
@@ -110,9 +116,14 @@ public class Analisador extends Thread{
                         if(fecha[0].equals("FECHA")){
                             j=pasarLinea(j);
                             Prestamos prestamos = new Prestamos(codigo[1], carne[1], fecha[1]);
-                            File file = new File("src/registros/prestamos/"+codigo[1]+"_"+carne[1]+".bin");
-                            guardarArchivos(file, prestamos);
-                            pp.setError("Registro Prestamo: Almacenado");
+                            File file = new File("src/registros/prestamos/"+codigo[1]+"_"+carne[1]+"_"+fecha[1]+".bin");
+                            if(file.exists()){
+                                pp.setError("Registro Prestamo: Error No se puede prestar el \n mismo libro a "
+                                        + "la misma persona en el mismo dia");
+                            }else{
+                                guardarArchivos(file, prestamos);
+                                pp.setError("Registro Prestamo: Almacenado");
+                            }                            
                         }else{
                             pp.setError(errorPrestamo);
                         }
@@ -122,20 +133,25 @@ public class Analisador extends Thread{
                 }else{
                     pp.setError(errorPrestamo);
                 }
+                pp.setError("***************************************");
                 break;
                 
             case "":
-                break;
-                
-        }
-        
+                break;                
+        }      
         
         return j;
     }
     
     private void guardarArchivos(File fichero, Object obj) throws IOException{
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero));
-        oos.writeObject(obj);
+        if(fichero.exists()){
+            fichero.delete();
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero));
+            oos.writeObject(obj);
+        }else{
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fichero));
+            oos.writeObject(obj);            
+        }
     }
     
     private int pasarLinea(int j){

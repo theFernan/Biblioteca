@@ -5,8 +5,19 @@ import java.io.Serializable;
 public class Prestamos implements Serializable{
     
     private String codigoLibro;
-    private String nombre;
-    private String carrera;
+    private String carnet;
+    private String fecha;
+
+    
+    
+    public Prestamos(){
+    }
+    
+    public Prestamos(String codigoLibro, String carnet, String fecha){
+        this.codigoLibro=codigoLibro;
+        this.fecha=fecha;
+        this.carnet=carnet;
+    }
 
     public String getCodigoLibro() {
         return codigoLibro;
@@ -16,28 +27,19 @@ public class Prestamos implements Serializable{
         this.codigoLibro = codigoLibro;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getCarnet() {
+        return carnet;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCarnet(String carnet) {
+        this.carnet = carnet;
     }
 
-    public String getCarrera() {
-        return carrera;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setCarrera(String carrera) {
-        this.carrera = carrera;
-    }
-    
-    public Prestamos(){
-    }
-    
-    public Prestamos(String codigoLibro, String nombre, String carrera){
-        this.codigoLibro=codigoLibro;
-        this.nombre=nombre;
-        this.carrera=carrera;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 }

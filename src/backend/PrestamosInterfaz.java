@@ -9,12 +9,12 @@ package backend;
  *
  * @author dylan
  */
-public class Prestamos extends javax.swing.JFrame {
+public class PrestamosInterfaz extends javax.swing.JFrame {
 
     /**
      * Creates new form Prestamos
      */
-    public Prestamos() {
+    public PrestamosInterfaz() {
         initComponents();
     }
 
