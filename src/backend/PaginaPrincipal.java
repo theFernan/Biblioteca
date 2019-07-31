@@ -5,6 +5,7 @@
  */
 package backend;
 
+import Reportes.Reporte;
 import biblioteca.Analisador;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,11 +45,15 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jButton5 = new javax.swing.JButton();
+<<<<<<< HEAD
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+=======
+        jButton6 = new javax.swing.JButton();
+>>>>>>> 8465688160b536ea72907967919be59685fb41ad
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -126,6 +131,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jButton2.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(218, 196, 130));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/libro.png"))); // NOI18N
@@ -135,6 +141,16 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
+=======
+        jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
+        jTextArea2.setColumns(20);
+        jTextArea2.setForeground(new java.awt.Color(51, 153, 0));
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jButton4.setText("Prestamo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 5748e5e2d5afd7551c7683960beb2a3ed1b532ea
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -154,6 +170,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/ingenieria.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -200,6 +217,14 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(160, 160, 160))
         );
+=======
+        jButton6.setText("Reportes");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+>>>>>>> 8465688160b536ea72907967919be59685fb41ad
 
         jMenu2.setText("Archivo");
 
@@ -246,13 +271,51 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton5)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2)))
+                .addContainerGap())
+>>>>>>> 8465688160b536ea72907967919be59685fb41ad
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addContainerGap())
+>>>>>>> 8465688160b536ea72907967919be59685fb41ad
         );
 
         pack();
@@ -300,11 +363,18 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         devolucion.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+<<<<<<< HEAD
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
             Reportes.Reporte reporte = new Reportes.Reporte();
             reporte.setVisible(true);
             
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+=======
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Reporte reporte = new Reporte();
+        reporte.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+>>>>>>> 8465688160b536ea72907967919be59685fb41ad
 
     private String leerArchivo() throws IOException{
         String texto="";
@@ -348,8 +418,12 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+=======
+    private javax.swing.JButton jButton6;
+>>>>>>> 8465688160b536ea72907967919be59685fb41ad
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;

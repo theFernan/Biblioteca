@@ -1,8 +1,11 @@
 
 package biblioteca;
 
+<<<<<<< HEAD
 import biblioteca.Estudiante;
 import biblioteca.Prestamos;
+=======
+>>>>>>> dylan
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -15,7 +18,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Reportero {
+<<<<<<< HEAD
 
+=======
+>>>>>>> dylan
     public void reporte1(JTable tabla1) throws IOException, ClassNotFoundException{
         ArrayList<Prestamos>  reporte = new ArrayList<Prestamos>();//arreglo para almacenar todos los datos de los ficheros .bin como objetos
         Date fecha = new Date();
@@ -51,6 +57,7 @@ public class Reportero {
         }
     }
     
+<<<<<<< HEAD
     public void reporte2(JTable tabla1) throws IOException, ClassNotFoundException{
         ArrayList<Prestamos>  reporte = new ArrayList<Prestamos>();//arreglo para almacenar todos los datos de los ficheros .bin como objetos
         Date fecha = new Date();
@@ -94,6 +101,8 @@ public class Reportero {
         return sDeuda;
     }
     
+=======
+>>>>>>> dylan
     private String carrera(String numeroCarrera){//pasar de codigo de carrera a nombre de carrera
         String carrera="";
         if(numeroCarrera.equals("1")){

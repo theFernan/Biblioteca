@@ -30,7 +30,11 @@ public class Reporte extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
 
+<<<<<<< HEAD
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+=======
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+>>>>>>> dylan
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,6 +178,7 @@ public class Reporte extends javax.swing.JFrame {
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         esconderBotones(false);
+<<<<<<< HEAD
         Reportero reportero = new Reportero();
         try {
             reportero.reporte2(jTable1);
@@ -182,6 +187,8 @@ public class Reporte extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+>>>>>>> dylan
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed

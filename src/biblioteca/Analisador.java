@@ -167,7 +167,7 @@ public class Analisador extends Thread{
     
     private void esperarXsegundos() {
 	try {
-            Thread.sleep(100);
+            Thread.sleep(10);
 	} catch (InterruptedException ex) {
             System.out.println("s");
 	}
