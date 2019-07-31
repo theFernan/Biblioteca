@@ -54,8 +54,6 @@ public class RegistrarLibro extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtCopias = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel12.setText("Campos con * son obligatorios");
 
         txtFecha.setText("Formato: yyyy/mm/dd");

@@ -5,6 +5,11 @@
  */
 package backend;
 
+import biblioteca.Prestamos;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author dylan
@@ -31,11 +36,10 @@ public class PrestamosInterfaz extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         txtCodLib = new javax.swing.JTextField();
         txtCarnet = new javax.swing.JTextField();
-        formartxtFecha = new javax.swing.JFormattedTextField();
         jLabel4 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
 
         jLabel1.setText("Codigo del libro");
 
@@ -50,17 +54,8 @@ public class PrestamosInterfaz extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Prestar otro libro");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        formartxtFecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("yyyy/mm/dd"))));
-
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel4.setText("yyyy/mm/dd");
+        jLabel4.setText("yyyy-mm-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -81,11 +76,9 @@ public class PrestamosInterfaz extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(formartxtFecha, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(txtFecha)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(jButton2)
-                        .addGap(40, 40, 40)
+                        .addGap(222, 222, 222)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -102,14 +95,12 @@ public class PrestamosInterfaz extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(formartxtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                .addComponent(jButton1)
                 .addGap(27, 27, 27))
         );
 
@@ -117,22 +108,22 @@ public class PrestamosInterfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        Prestamos prestamos=new Prestamos();
+        try {
+            prestamos.prestar(txtCarnet.getText(), txtCodLib.getText(), txtFecha.getText());
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(PrestamosInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFormattedTextField formartxtFecha;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtCarnet;
     private javax.swing.JTextField txtCodLib;
+    private javax.swing.JTextField txtFecha;
     // End of variables declaration//GEN-END:variables
 }
