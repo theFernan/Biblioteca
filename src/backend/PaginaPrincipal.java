@@ -5,6 +5,7 @@
  */
 package backend;
 
+import Reportes.Reporte;
 import biblioteca.Analisador;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -47,6 +48,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jTextArea2 = new javax.swing.JTextArea();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jMenuBar3 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -107,6 +109,13 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setText("Reportes");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         jMenu2.setText("Archivo");
 
         jMenuItem2.setText("Abrir Archivo");
@@ -128,7 +137,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
+                        .addGap(73, 73, 73)
+                        .addComponent(jButton6)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton5)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -156,7 +167,8 @@ public class PaginaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
                 .addContainerGap())
         );
 
@@ -205,6 +217,11 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         devolucion.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        Reporte reporte = new Reporte();
+        reporte.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private String leerArchivo() throws IOException{
         String texto="";
         Scanner entrada = null;
@@ -247,6 +264,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
