@@ -80,8 +80,6 @@ public class Devolucion extends javax.swing.JFrame {
         formartxtFecha1 = new javax.swing.JFormattedTextField();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setText("Codigo del libro");
 
         jLabel2.setText("Carnet del estudiante");
