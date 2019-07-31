@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 
@@ -22,17 +23,21 @@ public class Analisador extends Thread{
     @Override
     
     public void run(){
-        PaginaPrincipal analisis = new PaginaPrincipal();
-        String lineas[] = texto.split("\n");
-        
-        for(int j=0; j <= lineas.length-1; j++){ 
-            esperarXsegundos();
-            analisis.setTexto(lineas[j]);
-            try {
-                analisis(lineas[j], j, lineas);
-            } catch (IOException ex) {
-                Logger.getLogger(Analisador.class.getName()).log(Level.SEVERE, null, ex);
+        try{
+            PaginaPrincipal analisis = new PaginaPrincipal();
+            String lineas[] = texto.split("\n");
+
+            for(int j=0; j <= lineas.length-1; j++){ 
+                esperarXsegundos();
+                analisis.setTexto(lineas[j]);
+                try {
+                    analisis(lineas[j], j, lineas);
+                } catch (IOException ex) {
+                    Logger.getLogger(Analisador.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Introduzca antes el texto de entrada para leer");
         }
     }
     
@@ -162,7 +167,7 @@ public class Analisador extends Thread{
     
     private void esperarXsegundos() {
 	try {
-            Thread.sleep(100);
+            Thread.sleep(1000);
 	} catch (InterruptedException ex) {
             System.out.println("s");
 	}

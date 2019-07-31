@@ -41,6 +41,8 @@ public class RegistrarEstudiante extends javax.swing.JFrame {
         txtNacimiento = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         jPanel1.setBackground(new java.awt.Color(149, 18, 7));
 
         jLabel12.setBackground(new java.awt.Color(254, 254, 254));
