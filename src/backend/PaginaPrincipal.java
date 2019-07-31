@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -59,7 +60,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 153, 0));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -84,7 +87,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea2.setColumns(20);
+        jTextArea2.setForeground(new java.awt.Color(51, 153, 0));
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
@@ -159,12 +164,16 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTextArea1.setText("");
-        textos=jTextArea1;
-        errores=jTextArea2;
-        Analisador analisis = new Analisador();
-        analisis.setTexto(texto);      
-        analisis.start();
+        try{    
+            jTextArea1.setText("");
+            textos=jTextArea1;
+            errores=jTextArea2;
+            Analisador analisis = new Analisador();
+            analisis.setTexto(texto);      
+            analisis.start();
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Introduzca antes el texto de entrada para leer");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
        
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

@@ -7,8 +7,12 @@ package backend;
 
 import biblioteca.Prestamos;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -109,10 +113,21 @@ public class PrestamosInterfaz extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Prestamos prestamos=new Prestamos();
-        try {
-            prestamos.prestar(txtCarnet.getText(), txtCodLib.getText(), txtFecha.getText());
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(PrestamosInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+        if(txtCodLib.getText().equals("")||txtCarnet.getText().equals("")||txtFecha.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Error No Pueden haber Campos en blanco");
+        }else{
+            try {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
+                Date fechaInicial=dateFormat.parse(txtFecha.getText());
+                prestamos.prestar(txtCarnet.getText(), txtCodLib.getText(), txtFecha.getText());
+                txtCodLib.setText("");
+                txtCarnet.setText("");
+                txtFecha.setText("");
+            } catch (IOException | ClassNotFoundException ex) {
+                Logger.getLogger(PrestamosInterfaz.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ParseException ex){
+                JOptionPane.showMessageDialog(null, "Formato De Fecha Incorrecto");
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
