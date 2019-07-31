@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Reportero {
+
     public void reporte1(JTable tabla1) throws IOException, ClassNotFoundException{
         ArrayList<Prestamos>  reporte = new ArrayList<Prestamos>();//arreglo para almacenar todos los datos de los ficheros .bin como objetos
         Date fecha = new Date();
@@ -48,6 +49,49 @@ public class Reportero {
             tabla1.setModel(modelotabla);//enviar el modelo a la tabla
             
         }
+    }
+    
+    public void reporte2(JTable tabla1) throws IOException, ClassNotFoundException{
+        ArrayList<Prestamos>  reporte = new ArrayList<Prestamos>();//arreglo para almacenar todos los datos de los ficheros .bin como objetos
+        Date fecha = new Date();
+        String fechaDePrestamo=(parcearFecha(sumarRestarDiasFecha(fecha, -11)));//le restamos x dias a la fecha del sistema para saber los libros que se prestaron hace 3 dias y se deben entregar hoy
+        String path="src/registros/prestamos/";
+        File dir = new File(path);
+        String[] ficheros=dir.list();//nombre de todos los ficheros .bin en la carpeta
+        if(ficheros==null){
+        
+        }else{
+            for (int i=0; i<=ficheros.length-1; i++){//recorremos todos los ficheros del path
+                if(ficheros[i].contains(fechaDePrestamo)){//si el fichero tiene la fecha en el nombre lo abrimos
+                    File file = new File(path+ficheros[i]);////creamos un file
+                    Prestamos prestamo=new Prestamos();
+                    prestamo=(Prestamos) prestamo.leerArchivo(file);//leemos el archivo y lo agregamos a un objeto
+                    if(prestamo.getEstado().equals("Activo")){//si el prestamo esta activo lo agregamos
+                        reporte.add(prestamo);
+                    }
+                }
+            }
+            DefaultTableModel modelotabla=modelotabla = (DefaultTableModel) tabla1.getModel();//creamos un modelo de tabla y tomamos el modelo de la tabla del parametro como referencia
+            Prestamos prestamo=new Prestamos();
+            Estudiante estudiante = new Estudiante();
+            for(int i=0;i<reporte.size();i++){//recorrer el arreglo de objetos guardados
+                String pathEstudiante="src/registros/estudiantes/"+reporte.get(i).getCarnet()+".bin";
+                File file = new File(pathEstudiante);//sacar el objeto del estudiante para saber el codigo de su carrera
+                estudiante=(Estudiante) prestamo.leerArchivo(file);
+                modelotabla.addRow(new Object[] {reporte.get(i).getCodigoLibro(), reporte.get(i).getCarnet(),
+                    reporte.get(i).getFecha(), carrera(estudiante.getCarrera()), calcularPrecio(fechaDePrestamo)});//agregar fila al modelo de la tabla
+            }
+            tabla1.setModel(modelotabla);//enviar el modelo a la tabla
+            
+        }
+    }
+    
+    private String calcularPrecio(String dias){
+        String fechaArray[]=dias.split("/");
+        int nDias = Integer.parseInt(fechaArray[1]);
+        int deuda = nDias*5;
+        String sDeuda = Integer.toString(deuda);
+        return sDeuda;
     }
     
     private String carrera(String numeroCarrera){//pasar de codigo de carrera a nombre de carrera

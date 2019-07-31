@@ -174,6 +174,14 @@ public class Reporte extends javax.swing.JFrame {
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         esconderBotones(false);
+        Reportero reportero = new Reportero();
+        try {
+            reportero.reporte2(jTable1);
+        } catch (IOException ex) {
+            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Reporte.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
