@@ -13,6 +13,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -71,7 +72,9 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(21, 98, 175));
 
         jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(0, 0, 0));
         jTextArea1.setColumns(20);
+        jTextArea1.setForeground(new java.awt.Color(0, 153, 0));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -121,6 +124,7 @@ public class PaginaPrincipal extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
         jButton2.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(218, 196, 130));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/libro.png"))); // NOI18N
@@ -130,6 +134,16 @@ public class PaginaPrincipal extends javax.swing.JFrame {
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
+=======
+        jTextArea2.setBackground(new java.awt.Color(0, 0, 0));
+        jTextArea2.setColumns(20);
+        jTextArea2.setForeground(new java.awt.Color(51, 153, 0));
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jButton4.setText("Prestamo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 5748e5e2d5afd7551c7683960beb2a3ed1b532ea
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
@@ -254,12 +268,16 @@ public class PaginaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jTextArea1.setText("");
-        textos=jTextArea1;
-        errores=jTextArea2;
-        Analisador analisis = new Analisador();
-        analisis.setTexto(texto);      
-        analisis.start();
+        try{    
+            jTextArea1.setText("");
+            textos=jTextArea1;
+            errores=jTextArea2;
+            Analisador analisis = new Analisador();
+            analisis.setTexto(texto);      
+            analisis.start();
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "Introduzca antes el texto de entrada para leer");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
        
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed

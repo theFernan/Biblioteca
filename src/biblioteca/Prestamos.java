@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Prestamos implements Serializable{
     
@@ -96,25 +100,31 @@ public class Prestamos implements Serializable{
             if(cantidad>0){
                 if(cantidadDePrestamos<3){
                     if(activo==false){
-                        String nuevoPrestamo="src/registros/prestamos/"+codigo+"_"+carnet+"_"+fecha+".bin";
-                        File file2=new File(nuevoPrestamo);
-                        Prestamos newPrestamo=new Prestamos(codigo, carnet, fecha, "Activo");
-                        guardarArchivos(file2, newPrestamo);
-                        cantidad=cantidad-1;
-                        libro.setCantidad(String.valueOf(cantidad));
-                        file.delete();
-                        guardarArchivos(file, libro);
+                        String pathAlumno="src/registros/estudiantes/"+carnet+".bin";
+                        File estudiantes= new File (pathAlumno);
+                        if(estudiantes.exists()){
+                            String nuevoPrestamo="src/registros/prestamos/"+codigo+"_"+carnet+"_"+fecha+".bin";
+                            File file2=new File(nuevoPrestamo);
+                            Prestamos newPrestamo=new Prestamos(codigo, carnet, fecha, "Activo");
+                            guardarArchivos(file2, newPrestamo);
+                            cantidad=cantidad-1;
+                            libro.setCantidad(String.valueOf(cantidad));
+                            file.delete();
+                            guardarArchivos(file, libro);
+                        }else{
+                            JOptionPane.showMessageDialog(null,"Error: El Estudiante No Esta Registrado");
+                        }
                     }else{
-                        System.out.println("Prestamo Invalido, el libro ya fue prestado a este estudiante");
+                        JOptionPane.showMessageDialog(null,"Prestamo Invalido, el libro ya fue prestado a este estudiante");
                     }
                 }else{
-                    System.out.println("Prestamo Invalido");
+                    JOptionPane.showMessageDialog(null,"Error: El Estudiante Puede Prestar 3 Libros Como Maximo");
                 }
             }else{
-                System.out.println("Erro: El Libro no tiene unidades Disponibles");
+                JOptionPane.showMessageDialog(null,"Erro: El Libro no tiene unidades Disponibles");
             }           
         }else{
-            System.out.println("Error: el libro no existe o no esta disponible");
+            JOptionPane.showMessageDialog(null,"Error: el libro no existe o no esta disponible");
         }        
     }
     
@@ -135,7 +145,64 @@ public class Prestamos implements Serializable{
         return aux;        
     }
     
-    public void devolucion(){
+    public int [] calculoDeTotal(String carnet, String codigo, String fechaInicio, String fechaFinal) throws ParseException{
+        int precioPorDia=5;
+        int precioPorMora=10;
+        int diasConMora=0;
+        int diasSinMora=3;
+        int dias=0;
+        int totales[]=new int [3];      
+        String path="src/registros/prestamos/"+codigo+"_"+carnet+"_"+fechaInicio+".bin";
+        File file = new File(path);
+        if(file.exists()){
+            dias=calcularFecha(fechaInicio, fechaFinal);
+            if(dias>diasSinMora){
+                diasConMora=dias-diasSinMora;
+                totales[0]=diasSinMora*precioPorDia;
+                totales[1]=diasConMora*precioPorMora;
+                totales[2]=(diasSinMora*precioPorDia)+(diasConMora*precioPorMora);
+            }else{
+                totales[0]=dias*precioPorDia;
+                totales[1]=0;
+                totales[2]=totales[0];
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Error: El Registro De Ese Prestamo no Existe");
+            totales[0]=0;
+            totales[1]=0;
+            totales[2]=0;
+        }
+        return totales;
+    }
+    
+    public void devolucion(String carnet, String codigo, String fecha) throws IOException, ClassNotFoundException{
+        String pathPrestamo="src/registros/prestamos/"+codigo+"_"+carnet+"_"+fecha+".bin";
+        File file1= new File(pathPrestamo);
+        Prestamos prestamo = new Prestamos();
+        prestamo=(Prestamos) leerArchivo(file1);
+        prestamo.setEstado("Inactivo");
+        guardarArchivos(file1, prestamo);
+        String pathLibro="src/registros/libros/"+codigo+".bin";
+        File file2=new File(pathLibro);
+        Libro libro = new Libro();
+        libro=(Libro) leerArchivo(file2);
+        int cantidad=Integer.valueOf(libro.getCantidad()+1);
+        libro.setCantidad(String.valueOf(cantidad)); 
+        guardarArchivos(file2, libro);
+    }
+    
+    private int calcularFecha(String fechaInicio, String fechaFinal) throws ParseException{
         
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+ 
+	Date fechaInicial=dateFormat.parse(fechaInicio);
+	Date fecha_Final=dateFormat.parse(fechaFinal);
+        
+	int diasEntre=(int) ((fecha_Final.getTime()-fechaInicial.getTime())/86400000);
+        if(diasEntre<0){
+            JOptionPane.showMessageDialog(null, "Error Las Fechas No Estan Bien");
+            diasEntre=0;
+        }
+        return diasEntre;
     }
 }
