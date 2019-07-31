@@ -193,8 +193,7 @@ public class Prestamos implements Serializable{
     
     private int calcularFecha(String fechaInicio, String fechaFinal) throws ParseException{
         
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
- 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); 
 	Date fechaInicial=dateFormat.parse(fechaInicio);
 	Date fecha_Final=dateFormat.parse(fechaFinal);
         
